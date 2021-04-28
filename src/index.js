@@ -1,11 +1,9 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 
 const app = express()
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 
-const users = [
+const usersArray = [
     {
         name: 'Aycer',
         age: 24
@@ -13,13 +11,7 @@ const users = [
     {
         name: 'Wassim',
         age: 24
-    },
-    {
-        name: 'Wael',
-        age: 26
     }
-
-
 ]
 
 app.get('/hello', (req, res) => {
@@ -27,14 +19,15 @@ app.get('/hello', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-    return res.json(users)
-})
-app.post('/user', (req, res) => {
-    const user = req.body
-    users.push(user)
-    return res.json(user)
+    return res.json(usersArray)
 })
 
-app.listen(3000, () => {
-    console.log('Server start listening at port 3000');
+app.post('/user', (req, res) => {
+    const userData = req.body
+    usersArray.push(userData)
+    return res.json(userData)
+})
+
+app.listen(3050, () => {
+    console.log('Server start listening at port 3050');
 })
