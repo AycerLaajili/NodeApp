@@ -1,7 +1,20 @@
 const express = require('express')
+const mongoose = require('mongoose')
 
 const app = express()
 app.use(express.urlencoded({ extended: false }))
+
+const mongodbURI = 'mongodb://localhost:27017/gomycode'
+
+mongoose.connect(mongodbURI, {
+    useNewUrIParser: true,
+    useUnifiedTopology: true
+}, (error) => {
+    if (error)
+        console.log(error)
+    else
+        console.log('database connected ---------<')
+})
 
 const usersArray = [
     {
